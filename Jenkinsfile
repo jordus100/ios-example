@@ -5,6 +5,7 @@ pipeline {
             agent { label 'mac' }
             steps {
                 checkout scm
+                sh 'eval "$(rbenv init - sh)"'
                 sh 'bundle install'
                 sh 'bundle exec fastlane build'
             }
