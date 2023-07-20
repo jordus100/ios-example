@@ -8,7 +8,7 @@ pipeline {
             }
             steps {
                 checkout scm
-                sh 'eval "$(rbenv init - sh)"'
+                sh 'eval "$(rbenv init -)"'
                 sh 'bundle install'
                 sh 'bundle exec fastlane build'
             }
