@@ -3,6 +3,9 @@ pipeline {
     stages {
         stage('Build') {
             agent { label 'mac' }
+            environment {
+                PATH='/usr/local/bin'
+            }
             steps {
                 checkout scm
                 sh 'eval "$(rbenv init - sh)"'
