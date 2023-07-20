@@ -13,6 +13,7 @@ pipeline {
                 sh 'git clone https://github.com/rbenv/rbenv.git ~/.rbenv1'
                 sh 'eval "$(~/.rbenv1/bin/rbenv init - sh)"'
                 sh 'eval "${RBENV} local 3.2.2"'
+                sh 'echo $PATH'
                 sh 'gem install bundler'
                 sh 'bundle install'
                 sh 'bundle exec fastlane build'
