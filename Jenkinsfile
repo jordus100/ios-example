@@ -7,8 +7,9 @@ pipeline {
             //}
             steps {
                 checkout scm
+                sh 'git clone https://github.com/rbenv/rbenv.git ~/.rbenv'
+                sh 'eval "$(~/.rbenv/bin/rbenv init - sh)"'
                 // sh 'eval "$(rbenv init -)"'
-                sh 'eval "$(./usr/local/bin/rbenv init - sh)"'
                 sh 'bundle install'
                 sh 'bundle exec fastlane build'
             }
