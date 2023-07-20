@@ -13,6 +13,7 @@ pipeline {
                 sh 'eval "$(~/.rbenv1/bin/rbenv init - sh)"'
                 sh 'eval "${RBENV} local 3.2.2"'
                 // sh 'eval "$(rbenv init -)"'
+                sh 'echo $PATH'
                 sh 'ruby -v'
                 sh 'gem install bundler'
                 sh 'bundle install'
