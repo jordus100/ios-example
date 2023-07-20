@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             agent { label 'mac' }
             environment {
-                PATH = '~/.rbenv/shims:${PATH}'
+                PATH = '/Users/smartdust/.rbenv/shims:/Users/smartdust/.rbenv/shims:/Users/smartdust/.rbenv1/bin:/Users/smartdust/.nvm/versions/node/v14.20.1/bin:/Users/smartdust/.rbenv/shims:/usr/local/opt/openjdk/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/bin:/usr/local/sbin:/Library/Apple/usr/bin'
                 RBENV = '~/.rbenv1/bin/rbenv'
             }
             steps {
