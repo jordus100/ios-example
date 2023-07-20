@@ -3,13 +3,15 @@ pipeline {
     stages {
         stage('Build') {
             agent { label 'mac' }
-            //environment {
-            //}
+            environment {
+                RBENV = '~/.rbenv1/bin/rbenv'
+            }
             steps {
                 checkout scm
                 sh 'rm -rf ~/.rbenv1'
                 sh 'git clone https://github.com/rbenv/rbenv.git ~/.rbenv1'
                 sh 'eval "$(~/.rbenv1/bin/rbenv init - sh)"'
+                sh '${RBENV} local 3.2.2'
                 // sh 'eval "$(rbenv init -)"'
                 sh 'ruby -v'
                 sh 'gem install bundler'
