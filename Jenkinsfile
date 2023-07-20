@@ -3,13 +3,12 @@ pipeline {
     stages {
         stage('Build') {
             agent { label 'mac' }
-            environment {
-                PATH='/usr/local/bin'
-            }
+            //environment {
+            //}
             steps {
                 checkout scm
                 // sh 'eval "$(rbenv init -)"'
-                sh 'rbenv init'
+                sh 'eval "$(./usr/local/bin/rbenv init - sh)"'
                 sh 'bundle install'
                 sh 'bundle exec fastlane build'
             }
