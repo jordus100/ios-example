@@ -4,6 +4,7 @@ pipeline {
         stage('Build') {
             agent { label 'mac' }
             environment {
+                PATH = '~/.rbenv/shims:${PATH}'
                 RBENV = '~/.rbenv1/bin/rbenv'
             }
             steps {
