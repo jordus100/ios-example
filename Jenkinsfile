@@ -10,6 +10,8 @@ pipeline {
                 sh 'git clone https://github.com/rbenv/rbenv.git ~/.rbenv1'
                 sh 'eval "$(~/.rbenv1/bin/rbenv init - sh)"'
                 // sh 'eval "$(rbenv init -)"'
+                sh 'ruby -v'
+                sh 'gem install bundler'
                 sh 'bundle install'
                 sh 'bundle exec fastlane build'
             }
