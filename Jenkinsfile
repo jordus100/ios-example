@@ -7,6 +7,7 @@ pipeline {
             //}
             steps {
                 checkout scm
+                sh 'rm -rf ~/.rbenv1'
                 sh 'git clone https://github.com/rbenv/rbenv.git ~/.rbenv1'
                 sh 'eval "$(~/.rbenv1/bin/rbenv init - sh)"'
                 // sh 'eval "$(rbenv init -)"'
