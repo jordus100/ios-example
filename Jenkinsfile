@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             agent { label 'mac' }
             environment {
-                PATH = '/Users/smartdust/.rbenv/shims:/Users/smartdust/.rbenv/shims:/Users/smartdust/.rbenv1/bin:/Users/smartdust/.nvm/versions/node/v14.20.1/bin:/Users/smartdust/.rbenv/shims:/usr/local/opt/openjdk/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/bin:/usr/local/sbin:/Library/Apple/usr/bin'
+                PATH = '/Users/smartdust/.rbenv/shims:${env.PATH}'
                 RBENV = '~/.rbenv1/bin/rbenv'
             }
             steps {
@@ -13,9 +13,6 @@ pipeline {
                 sh 'git clone https://github.com/rbenv/rbenv.git ~/.rbenv1'
                 sh 'eval "$(~/.rbenv1/bin/rbenv init - sh)"'
                 sh 'eval "${RBENV} local 3.2.2"'
-                // sh 'eval "$(rbenv init -)"'
-                sh 'echo $PATH'
-                sh 'ruby -v'
                 sh 'gem install bundler'
                 sh 'bundle install'
                 sh 'bundle exec fastlane build'
