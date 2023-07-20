@@ -4,11 +4,11 @@ pipeline {
         stage('Build') {
             agent { label 'mac' }
             environment {
-                PATH = '/Users/smartdust/.rbenv/shims:${env.PATH}'
                 RBENV = '~/.rbenv1/bin/rbenv'
             }
             steps {
                 checkout scm
+                sh '$PATH="/Users/smartdust/.rbenv/shims:${PATH}"'
                 sh 'rm -rf ~/.rbenv1'
                 sh 'git clone https://github.com/rbenv/rbenv.git ~/.rbenv1'
                 sh 'eval "$(~/.rbenv1/bin/rbenv init - sh)"'
