@@ -5,7 +5,7 @@ pipeline {
             agent { label 'mac' }
             environment {
                 RBENV = '~/.rbenv1/bin/rbenv'
-                PATH="/Users/smartdust/.rbenv/shims:/usr/bin"
+                PATH="/Users/smartdust/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin"
             }
             steps {
                 checkout scm
