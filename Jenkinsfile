@@ -5,15 +5,14 @@ pipeline {
             agent { label 'mac' }
             environment {
                 RBENV = '~/.rbenv1/bin/rbenv'
+                PATH="/Users/smartdust/.rbenv/shims:/usr/bin"
             }
             steps {
                 checkout scm
-                sh 'export PATH="/Users/smartdust/.rbenv/shims:${PATH}"'
                 sh 'rm -rf ~/.rbenv1'
                 sh 'git clone https://github.com/rbenv/rbenv.git ~/.rbenv1'
-                sh 'eval "$(~/.rbenv1/bin/rbenv init - sh)"'
                 sh 'eval "${RBENV} local 3.2.2"'
-                sh 'echo $PATH'
+                sh 'ruby -v'
                 sh 'gem install bundler'
                 sh 'bundle install'
                 sh 'bundle exec fastlane build'
