@@ -4,9 +4,11 @@ pipeline {
         stage('Build') {
             agent { label 'mac' }
             environment {
-                PATH="/Users/smartdust/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin"
+                //PATH="/Users/smartdust/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin"
+                PATH= '/Users/smartdust/.rbenv/shims:${env.PATH}'
             }
             steps {
+                sh 'echo $PATH'
                 checkout scm
                 sh 'gem install bundler'
                 sh 'bundle install'
@@ -20,7 +22,7 @@ pipeline {
                 SD_TOKEN = 'a534c80c572442689dd560c4bc34921ce441781b34434f5bb02b062424a89fee'
             }
             steps {
-                sh 'whoami'
+                sh 'echo '
                 sh 'smartdust-client connect --all -f platform:iOS'
             }
         }
