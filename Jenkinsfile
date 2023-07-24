@@ -1,7 +1,7 @@
 pipeline {
     agent none
     stages {
-        stage('Build') {
+        stage('Build app') {
             agent { label 'mac' }
             environment {
                 PATH="/Users/smartdust/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -20,7 +20,6 @@ pipeline {
                 SD_TOKEN = 'a534c80c572442689dd560c4bc34921ce441781b34434f5bb02b062424a89fee'
             }
             steps {
-                sh 'echo $PATH'
                 sh 'smartdust-client connect --all -f platform:iOS'
             }
         }
@@ -40,7 +39,6 @@ pipeline {
                 PATH = '/home/smartdust/.nvm/versions/node/v18.16.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
             }
             steps {
-                sh 'cd client'
                 dir('client') {
                     sh 'npm install'
                     sh 'npx appium &'
@@ -49,6 +47,7 @@ pipeline {
                     sh 'sleep 10'
                     sh 'node test.js'
                 }
+                sh 'smartdust-client disconnect --all'
             }
         }
     }
