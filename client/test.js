@@ -6,7 +6,6 @@ const sharedCapabilities = {
 	'appium:deviceName': 'blabla',
 	'appium:automationName': 'XCUITest',
 	'platformName': 'iOS',
-	'browserName': "Safari",
 	'appium:usePrebuiltWDA': true,
 	//startIWDP: true,
 }
@@ -29,8 +28,6 @@ async function main() {
 		opts.capabilities = {...sharedCapabilities, ...devicesCapabilities[i]}
 		clients[i] = await wdio.remote(opts)
 	}
-	await client.url('https://www.youtube.com/watch?v=8v5f_ybSjHk');
-    client.pause(5000)
 	for (const client of clients) {
 		await client.activateApp("jog.Kalculator")
 		await client.deleteSession()
