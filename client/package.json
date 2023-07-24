@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "appium": "^2.0.0",
+    "appium-xcuitest-driver": "^4.32.23",
     "webdriverio": "^8.12.1"
   }
 }
