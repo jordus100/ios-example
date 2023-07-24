@@ -40,7 +40,7 @@ pipeline {
                 NVM_DIR = '$HOME/.nvm'
             }
             steps {
-                sh '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
+                sh '[ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh"'
                 sh 'nvm use 18.16.1'
                 sh 'ios'
             }
