@@ -4,15 +4,10 @@ pipeline {
         stage('Build') {
             agent { label 'mac' }
             environment {
-                RBENV = '~/.rbenv1/bin/rbenv'
                 PATH="/Users/smartdust/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin"
             }
             steps {
                 checkout scm
-                sh 'rm -rf ~/.rbenv1'
-                sh 'git clone https://github.com/rbenv/rbenv.git ~/.rbenv1'
-                sh 'eval "${RBENV} local 3.2.2"'
-                sh 'ruby -v'
                 sh 'gem install bundler'
                 sh 'bundle install'
                 sh 'bundle exec fastlane build'
@@ -37,6 +32,17 @@ pipeline {
             steps {
                 sh 'ideviceinstaller -u c81fadec2a2affb46093bb3036cf1f49db2dc187 install Kalculator.ipa'
                 sh 'ideviceinstaller -u 25c925bfbb0ed425fa7c4e30d62b6be82fe15298 install Kalculator.ipa'
+            }
+        }
+        stage('Appium test') {
+            agent { label 'inbuilt' }
+            environment {
+                NVM_DIR = '$HOME/.nvm'
+            }
+            steps {
+                sh '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
+                sh 'nvm use 18.16.1'
+                sh 'ios'
             }
         }
     }
