@@ -38,6 +38,7 @@ pipeline {
             agent { label 'inbuilt' }
             environment {
                 NVM_DIR = '$HOME/.nvm'
+                HOME = '/home/smartdust'
             }
             steps {
                 sh '[ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh"'
