@@ -36,8 +36,9 @@ pipeline {
         }
         stage('Appium test') {
             agent { label 'inbuilt' }
-            //environment {
-            //}
+            environment {
+                PATH = '/home/smartdust/.nvm/versions/node/v18.16.1:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+            }
             steps {
                 sh 'ios'
             }
