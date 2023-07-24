@@ -4,11 +4,9 @@ pipeline {
         stage('Build') {
             agent { label 'mac' }
             environment {
-                //PATH="/Users/smartdust/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin"
-                PATH= '/Users/smartdust/.rbenv/shims:${env.PATH}'
+                PATH="/Users/smartdust/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin"
             }
             steps {
-                sh 'echo $PATH'
                 checkout scm
                 sh 'gem install bundler'
                 sh 'bundle install'
@@ -22,7 +20,7 @@ pipeline {
                 SD_TOKEN = 'a534c80c572442689dd560c4bc34921ce441781b34434f5bb02b062424a89fee'
             }
             steps {
-                sh 'echo '
+                sh 'echo $PATH'
                 sh 'smartdust-client connect --all -f platform:iOS'
             }
         }
@@ -38,12 +36,9 @@ pipeline {
         }
         stage('Appium test') {
             agent { label 'inbuilt' }
-            environment {
-                NVM_DIR = '/home/smartdust/.nvm'
-            }
+            //environment {
+            //}
             steps {
-                sh '[ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh"'
-                sh 'nvm use 18.16.1'
                 sh 'ios'
             }
         }
