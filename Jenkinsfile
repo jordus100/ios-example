@@ -43,7 +43,7 @@ pipeline {
                 sh 'cd client'
                 dir('client') {
                     sh 'npm install'
-                    sh 'npx appium'
+                    sh 'npx appium &'
                     sh 'ios --udid=25c925bfbb0ed425fa7c4e30d62b6be82fe15298 forward 7777 8100&'
                     sh 'ios --udid=c81fadec2a2affb46093bb3036cf1f49db2dc187 forward 7778 8100&'
                     sh 'sleep 10'
