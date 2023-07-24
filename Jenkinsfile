@@ -37,6 +37,8 @@ pipeline {
             agent { label 'inbuilt' }
             environment {
                 PATH = '/home/smartdust/.nvm/versions/node/v18.16.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+                SD_URL = 'https://staging.smartdust.me'
+                SD_TOKEN = 'a534c80c572442689dd560c4bc34921ce441781b34434f5bb02b062424a89fee'
             }
             steps {
                 dir('client') {
