@@ -30,6 +30,10 @@ async function main() {
 	}
 	for (const client of clients) {
 		await client.activateApp("jog.Kalculator")
+		const elem = await $('~clearButton')
+		await elem.click()
+		client.pause(2000)
+		await elem.click()
 		await client.deleteSession()
 	}
 }
