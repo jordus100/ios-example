@@ -11,6 +11,7 @@ pipeline {
                 sh 'gem install bundler'
                 sh 'bundle install'
                 sh 'bundle exec fastlane build'
+                stash includes: 'Kalculator.ipa', name: 'BUILT_IPA'
             }
         }
         stage('Connect to iPhones') {
@@ -27,11 +28,10 @@ pipeline {
         stage('Install app on iPhones') {
             agent { label 'inbuilt' }
             environment {
-                APP_PATH = '../Kalculator.ipa'
+                APP_PATH = 'Kalculator.ipa'
             }
             steps {
-                sh 'pwd'
-                sh 'ls'
+                unstash 'BUILT_IPA'
                 sh 'ideviceinstaller -u c81fadec2a2affb46093bb3036cf1f49db2dc187 install $APP_PATH'
                 sh 'ideviceinstaller -u 25c925bfbb0ed425fa7c4e30d62b6be82fe15298 install $APP_PATH'
             }
