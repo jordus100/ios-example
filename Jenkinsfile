@@ -7,7 +7,6 @@ pipeline {
                 PATH="/Users/smartdust/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin"
             }
             steps {
-                sh 'env'
                 checkout scm
                 sh 'gem install bundler'
                 sh 'bundle install'
