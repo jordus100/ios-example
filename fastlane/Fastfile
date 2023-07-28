@@ -22,8 +22,8 @@ platform :ios do
       path:"~/Library/Keychains/login.keychain-db",
       password:"smart1986")
     gym(
-      xcargs:"-allowProvisioningUpdates",
+      xcargs:"-allowProvisioningUpdates", # Allow XCode to apply automatic codesigning
       configuration:"Debug",
-      export_method:"development")
+      export_method:"development") # Development builds
   end
 end
