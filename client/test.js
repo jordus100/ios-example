@@ -30,7 +30,7 @@ async function main() {
 	}
 	for (const client of clients) {
 		await client.activateApp("jog.Kalculator")
-		client.pause(2000)
+		client.pause(5000)
 		const elem = await client.$('~clearButton')
 		await elem.click()
 		client.pause(2000)
